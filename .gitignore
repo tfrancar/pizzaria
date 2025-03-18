@@ -1,0 +1,26 @@
+# Executables
+*.exe
+*.test
+*.out
+
+# Build files
+bin/
+pkg/
+.DS_Store
+
+# Dependencies
+/vendor/
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+
+# Environment files
+.env
