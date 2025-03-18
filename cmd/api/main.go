@@ -8,11 +8,13 @@ import (
 )
 
 func main() {
-	fmt.Println("Iniciando servidor da Pizzaria...")
+	fmt.Println("Starting the Pizzeria server...")
 
-	// Criar roteador
-	r := router.PizzasRouters()
+	// Register the routes
+	router := router.PizzasRouters()
 
-	// Subir servidor na porta 8080
-	http.ListenAndServe(":8080", r)
+	// Server up on port 8080
+	if err := http.ListenAndServe(":8080", router); err != nil {
+		fmt.Printf("Error starting the server: %v\n", err)
+	}
 }

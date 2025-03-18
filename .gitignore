@@ -24,3 +24,4 @@ temp/
 
 # Environment files
 .env
+.air.toml
