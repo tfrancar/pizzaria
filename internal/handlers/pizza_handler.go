@@ -15,7 +15,6 @@ func ListPizzas(w http.ResponseWriter, r *http.Request) {
 	pizzas := repository.GetPizzas()
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(pizzas)
-	w.WriteHeader(http.StatusOK)
 }
 
 // Create a new pizza
@@ -37,7 +36,7 @@ func CreatePizza(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(pizza)
-	w.WriteHeader(http.StatusCreated)
+
 }
 
 // Get a pizza by ID
@@ -58,7 +57,7 @@ func GetPizza(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(pizza)
-	w.WriteHeader(http.StatusOK)
+
 }
 
 // Update a pizza by ID
@@ -88,8 +87,6 @@ func UpdatePizza(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(pizza)
-	w.WriteHeader(http.StatusOK)
-
 }
 
 // Delete a pizza by ID
