@@ -26,7 +26,10 @@ Execute o seguinte comando no terminal:
 ```bash
 air --build.cmd "go build -o bin/api cmd/api/main.go" --build.bin "./bin/api"
 ```
-**Opção 2: Usando `go run cmd/api/main.go` **
+**Opção 2: Usando `go run` **
+```bash
+go run cmd/api/main.go
+```
 
 **Tecnologias Utilizadas (Espaço reservado)**
 
