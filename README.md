@@ -1,7 +1,5 @@
 # Projeto Pizzaria
 
-Este projeto foi desenvolvido como um exercício de aprendizado dentro do curso de Go da Rocketseat.
-
 **Visão Geral:**
 
 Este projeto fornece uma API RESTful para gerenciar informações sobre pizzas. Ele implementa operações CRUD básicas (Criar, Ler, Atualizar, Deletar) usando um armazenamento de dados em memória.
