@@ -19,9 +19,9 @@ func PizzasRouters() *chi.Mux {
 	// Pizza routes
 	r.Get("/pizzas", handlers.ListPizzas)
 	r.Post("/addpizzas", handlers.CreatePizza)
-	// r.Get("/pizzas/{id}", getPizza)
-	// r.Put("/pizzas/{id}", updatePizza)
-	// r.Delete("/pizzas/{id}", deletePizza)
+	r.Get("/pizzas/{id}", handlers.GetPizza)
+	r.Put("/pizzas/{id}", handlers.UpdatePizza)
+	r.Delete("/pizzas/{id}", handlers.DeletePizza)
 
 	return r
 }

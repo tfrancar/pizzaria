@@ -8,6 +8,7 @@ import (
 )
 
 func main() {
+	// repository.LoadPizzas()
 	fmt.Println("Starting the Pizzeria server...")
 
 	// Register the routes
