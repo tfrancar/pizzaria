@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-// LoggerMiddleware registra cada requisição HTTP no console
+// Logs requests to the console
 func LoggerMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		start := time.Now()
