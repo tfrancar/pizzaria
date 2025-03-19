@@ -31,6 +31,6 @@ air --build.cmd "go build -o bin/api cmd/api/main.go" --build.bin "./bin/api"
 go run cmd/api/main.go
 ```
 
-**Tecnologias Utilizadas**
+**Tecnologia Utilizada:**
 
 * Go
