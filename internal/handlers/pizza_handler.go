@@ -3,7 +3,9 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 
+	"github.com/go-chi/chi/v5"
 	"github.com/tfrancar/pizzaria/internal/models"
 	"github.com/tfrancar/pizzaria/internal/repository"
 )
@@ -36,4 +38,75 @@ func CreatePizza(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(pizza)
 	w.WriteHeader(http.StatusCreated)
+}
+
+// Get a pizza by ID
+func GetPizza(w http.ResponseWriter, r *http.Request) {
+	idParam := chi.URLParam(r, "id")
+
+	id, err := strconv.Atoi(idParam)
+	if err != nil {
+		http.Error(w, "Invalid ID", http.StatusBadRequest)
+		return
+	}
+
+	pizza, found := repository.GetPizzaByID(id)
+	if !found {
+		http.Error(w, "Pizza not found", http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(pizza)
+	w.WriteHeader(http.StatusOK)
+}
+
+// Update a pizza by ID
+func UpdatePizza(w http.ResponseWriter, r *http.Request) {
+	idParam := chi.URLParam(r, "id")
+
+	id, err := strconv.Atoi(idParam)
+	if err != nil {
+		http.Error(w, "Invalid ID", http.StatusBadRequest)
+		return
+	}
+
+	var updatedPizza models.Pizza
+
+	// Decode the JSON request body into updatedPizza
+	if err := json.NewDecoder(r.Body).Decode(&updatedPizza); err != nil {
+		http.Error(w, "Something went wrong decoding. Try again later", http.StatusBadRequest)
+		return
+	}
+
+	// Update the pizza in the repository
+	pizza, found := repository.UpdatePizza(id, updatedPizza)
+	if !found {
+		http.Error(w, "Pizza not found", http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(pizza)
+	w.WriteHeader(http.StatusOK)
+
+}
+
+// Delete a pizza by ID
+func DeletePizza(w http.ResponseWriter, r *http.Request) {
+	idParam := chi.URLParam(r, "id")
+
+	id, err := strconv.Atoi(idParam)
+	if err != nil {
+		http.Error(w, "Invalid ID", http.StatusBadRequest)
+		return
+	}
+
+	deleted := repository.DeletePizza(id)
+	if !deleted {
+		http.Error(w, "Pizza not found", http.StatusNotFound)
+		return
+	}
+
+	w.WriteHeader(http.StatusNoContent)
 }
